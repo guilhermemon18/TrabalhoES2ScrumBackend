@@ -1,0 +1,36 @@
+services:
+  server:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3333:3000
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - trab1_network
+  db:
+    image: mysql
+    healthcheck:
+      test: "exit 0"
+    restart: always
+    networks:
+      - trab1_network
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: trab1-db
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass
+    volumes:
+      - trab1-db-data:/var/lib/mysql
+    ports:
+      - 3307:3306
+
+volumes:
+  trab1-db-data:
+
+networks:
+  trab1_network:
