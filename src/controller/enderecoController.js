@@ -1,5 +1,34 @@
 const enderecoServices = require('../services/enderecoServices');
 
+const buscarEnderecoCompleto = async (req, res) => {
+    let json = { error: '', result: {} };
+
+    let idEndereco = req.params.idEndereco;
+    let endereco = await enderecoServices.buscarEndereco(idEndereco);
+    let bairro = await enderecoServices.buscarBairro(endereco.Bairro_idBairro);
+    let logradouro = await enderecoServices.buscarLogradouro(endereco.Logradouro_idLogradouro);
+    let tipoLogradouro = await enderecoServices.buscarTipoLogradouro(logradouro.TipoLogradouro_idTipoLogradouro);
+    let cidade = await enderecoServices.buscarCidade(endereco.Cidade_idCidade);
+    let unidadeFederativa = await enderecoServices.buscarUnidadeFederativa(cidade.UnidadeFederativa_idUnidadeFederativa);
+
+    console.log(endereco);
+
+    if (endereco) {
+        json.result = {
+            idEndereco: endereco.idEndereco,
+            cep: endereco.cep,
+            bairro: bairro.bairro,
+            cidade: cidade.cidade,
+            tipoLogradouro: tipoLogradouro.tipoLogradouro,
+            logradouro: logradouro.logradouro,
+            UF: unidadeFederativa.unidadeFederativa,
+            siglaUF: unidadeFederativa.siglaUnidadeFederativa
+        };
+    }
+
+    res.json(json);
+}
+
 const buscarUnidadeFederativa = async (req, res) => {
     let json = { error: '', result: {} };
 
@@ -17,6 +46,7 @@ const buscarUnidadeFederativa = async (req, res) => {
     }
     res.json(json);
 }
+
 const buscarCidade = async (req, res) => {
     let json = { error: '', result: {} };
 
@@ -33,6 +63,7 @@ const buscarCidade = async (req, res) => {
     }
     res.json(json);
 }
+
 const buscarBairro = async (req, res) => {
     let json = { error: '', result: {} };
 
@@ -49,6 +80,7 @@ const buscarBairro = async (req, res) => {
     }
     res.json(json);
 }
+
 const buscarTipoLogradouro = async (req, res) => {
     let json = { error: '', result: {} };
 
@@ -65,6 +97,7 @@ const buscarTipoLogradouro = async (req, res) => {
     }
     res.json(json);
 }
+
 const buscarLogradouro = async (req, res) => {
     let json = { error: '', result: {} };
 
@@ -100,6 +133,7 @@ const buscarEndereco = async (req, res) => {
 }
 
 module.exports = {
+    buscarEnderecoCompleto,
     buscarUnidadeFederativa,
     buscarCidade,
     buscarBairro,
