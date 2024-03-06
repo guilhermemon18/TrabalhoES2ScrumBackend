@@ -3,16 +3,15 @@ require('dotenv').config({path:'variaveis.env'});
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const routes = require('./routes/routes');
+const routes = require('./routes/enderecoRoutes');
 
 const server = express();
-//server.use(atualizar);
 server.use(cors());
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(bodyParser.json());
-server.use('/paraki',routes);
+server.use('/empresa-tec',routes);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 server.listen(port, () => { 
     console.log(`Servidor rodando na porta:${port}`);
