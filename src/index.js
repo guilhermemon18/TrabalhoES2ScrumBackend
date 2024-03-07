@@ -10,7 +10,7 @@ const server = express();
 server.use(cors());
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(bodyParser.json());
-server.use('/paraki',routes);
+server.use('/empresa-tec',routes);
 
 const port = process.env.PORT || 3000;
 

@@ -2,10 +2,10 @@ const express = require('express');
 
 //rotas especificas (exemplos):
 
-const testeRoutes = require('./testeRoutes');
+const projetoRoutes = require('./projetoRoutes');
 //so para fazer o add
 const server = express();
 
-server.use('/teste',testeRoutes);
+server.use('/projeto',projetoRoutes);
 
 module.exports = server;
