@@ -21,18 +21,18 @@ const buscarProfissional = (idProfissional) => {
         });
     });
 }
-const inserirProfissional = (nomeProfissional, nomeSocial, cpf, dataNascimento, nroEndereco, complementoEndereco, idEndereco, idRaca, idGenero, idTime, idEspecialidade) => {
+const inserirProfissional = (nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, idEndereco, idTime, idEspecialidade) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('INSERT INTO profissional (nomeProfissional, nomeSocial, cpf, dataNascimento, nroEndereco, complementoEndereco, Endereco_idEndereco, Raca_idRaca, Genero_idGenero, Time_idTime, Especialidade_idEspecialidade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nomeProfissional, nomeSocial, cpf, dataNascimento, nroEndereco, complementoEndereco, idEndereco, idRaca, idGenero, idTime, idEspecialidade], (error, results) =>{
+        database.query('INSERT INTO profissional (nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, isAtivo, Endereco_idEndereco, Time_idTime, Especialidade_idEspecialidade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, 1, idEndereco, idTime, idEspecialidade], (error, results) =>{
             if (error) { rejeitado(error); return; }
             aceito(results.insertCodigo);
         });
     });
 }
 
-const alterarProfissional = (idProfissional, nomeProfissional, nomeSocial, cpf, dataNascimento, nroEndereco, complementoEndereco, cep, idEndereco, idRaca, idGenero, idTime, idEspecialidade) => {
+const alterarProfissional = (idProfissional, nomeCompleto, nomeSocial, cpf, dataNascimento, nroEndereco, complementoEndereco, cep, idEndereco, idRaca, idGenero, idTime, idEspecialidade) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('UPDATE profissional SET nomeProfissional = ?, nomeSocial = ?, cpf = ?, dataNascimento = ?, nroEndereco = ?, complementoEndereco = ?, Endereco_idEndereco = ?, Raca_idRaca = ?, Genero_idGenero = ?, Time_idTime = ?, Especialidade_idEspecialidade = ?  WHERE idUsuario = ?', [idProfissional, nomeProfissional, nomeSocial, cpf, dataNascimento, nroEndereco, complementoEndereco, cep, idEndereco, idRaca, idGenero, idTime, idEspecialidade], (error, results) =>{
+        database.query('UPDATE profissional SET nomeCompleto = ?, nomeSocial = ?, cpf = ?, dataNascimento = ?, nroEndereco = ?, complementoEndereco = ?, Endereco_idEndereco = ?, Raca_idRaca = ?, Genero_idGenero = ?, Time_idTime = ?, Especialidade_idEspecialidade = ?  WHERE idUsuario = ?', [idProfissional, nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, idEndereco, idTime, idEspecialidade], (error, results) =>{
             if (error) { rejeitado(error); return; }
             aceito(results);
         });

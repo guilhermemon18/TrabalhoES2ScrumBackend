@@ -1,6 +1,4 @@
 const profissionalServices = require('../services/profissionalServices');
-const racaServices = require('../services/racaServices');
-const generoServices = require('../services/generoServices');
 const especialidadeServices = require('../services/especialidadeServices');
 
 const listarProfissional = async (req, res) => {
@@ -9,8 +7,6 @@ const listarProfissional = async (req, res) => {
     let profissionais = await profissionalServices.listarProfissional();
 
     for(let i in profissionais){
-        let raca = await racaServices.buscarRaca(profissionais[i].Raca_idRaca);
-        let genero = await generoServices.buscarGenero(profissionais[i].Genero_idGenero);
         //let time = await timeServices.buscarTime(profissionais[i].Time_idTime);
         // esperar integrar com feature/time
         let especialidade = await especialidadeServices.buscarEspecialidade(profissionais[i].Especialidade_idEspecialidade);
@@ -21,11 +17,11 @@ const listarProfissional = async (req, res) => {
             nomeSocial: profissionais[i].nomeSocial,
             cpf: profissionais[i].cpf,
             dataNascimento: profissionais[i].dataNascimento,
+            raca: profissionais[i].raca,
+            genero: profissionais[i].genero,
             nroEndereco: profissionais[i].nroEndereco,
             complementoEndereco: profissionais[i].complementoEndereco,
             cep: profissionais[i].cep,
-            raca: raca.raca,
-            genero: genero.genero,
             //time: time.nomeTime,
             // esperar integrar com feature/time
             especialidade: especialidade.tipoEspecialidade,
@@ -40,8 +36,6 @@ const buscarProfissional = async (req, res) => {
 
     let idProfissional = req.params.id;
     let profissional = await profissionalServices.buscarProfissional(idProfissional);
-    let raca = await racaServices.buscarRaca(profissional.Raca_idRaca);
-    let genero = await generoServices.buscarGenero(profissional.Genero_idGenero);
     //let time = await timeSerevices.buscarRime(profissional.Time_idTime);
     // esperar integrar com feature/time
     let especialidade = await especialidadeServices.buscarEspecialidade(profissional.Especialidade_idEspecialidade);
@@ -55,10 +49,10 @@ const buscarProfissional = async (req, res) => {
             nomeSocial: profissional.nomeSocial,
             cpf: profissional.cpf,
             dataNascimento: profissional.dataNascimento,
+            raca: profissional.raca,
+            genero: profissional.genero,
             nroEndereco: profissional.nroEndereco,
             complementoEndereco: profissional.complementoEndereco,
-            raca: raca.raca,
-            genero: genero.genero,
             //time: time.nomeTime,
             // esperar integrar com feature/time
             especialidade: especialidade.tipoEspecialidade,
@@ -71,25 +65,45 @@ const buscarProfissional = async (req, res) => {
 const inserirProfissional = async(req, res) => {
     let json = {error:'', result:{}};
 
-    let nomeProfissional = req.body.nomeProfissional;
+    let nomeCompleto = req.body.nomeCompleto;
     let nomeSocial = req.body.nomeSocial;
     let cpf = req.body.cpf;
     let dataNascimento = req.body.dataNascimento;
+    let raca = req.body.raca;
+    let genero = req.body.genero;
     let nroEndereco = req.body.nroEndereco;
     let complementoEndereco = req.body.complementoEndereco;
-    let idEndereco = 1;
-    let idRaca = req.body.raca;
-    let idGenero = req.body.genero;
-    let idTime = 1;
-    let idEspecialidade = req.body.especialidade;
+    let idEndereco = req.body.idEndereco;
+    let idTime = req.body.idTime;
+    let idEspecialidade = req.body.idEspecialidade;
 
-    if(nomeProfissional && cpf && dataNascimento && nroEndereco && idEndereco && idRaca && idGenero && idTime && idEspecialidade){
-        let idProfissional = await profissionalServices.inserirProfissional(nomeProfissional, nomeSocial, cpf, dataNascimento, nroEndereco, complementoEndereco, idEndereco, idRaca, idGenero, idTime, idEspecialidade);
+    if(nomeCompleto && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idTime && idEspecialidade){
+        let idProfissional = await profissionalServices.inserirProfissional(nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, idEndereco, idTime, idEspecialidade);
         json.result = {
             idProfissional: idProfissional,
-            // add resto dos atributos
+            nomeCompleto,
+            nomeSocial,
+            cpf,
+            dataNascimento,
+            raca,
+            genero,
+            nroEndereco,
+            complementoEndereco,
+            idTime,
+            //esperar integrar com feature/time
+            idEspecialidade,
         };
     }else{
+        console.log(nomeCompleto);
+        console.log(cpf);
+        console.log(dataNascimento);
+        console.log(raca);
+        console.log(genero);
+        console.log(nroEndereco);
+        console.log(idEndereco);
+        console.log(idTime);
+        console.log(idEspecialidade);
+        console.log();
         json.error = 'Campos obrigatórios não enviados!';
     }
     res.json(json);
@@ -103,24 +117,34 @@ const alterarProfissional = async(req, res) => {
     let nomeSocial = req.body.nomeSocial;
     let cpf = req.body.cpf;
     let dataNascimento = req.body.dataNascimento;
+    let raca = req.body.raca;
+    let genero = req.body.genero;
     let nroEndereco = req.body.nroEndereco;
     let complementoEndereco = req.body.complementoEndereco;
     let idEndereco = 1;
-    let idRaca = req.body.raca;
-    let idGenero = req.body.genero;
     let idTime = 1;
     let idEspecialidade = req.body.especialidade;
 
-    if(nomeProfissional && cpf && dataNascimento && nroEndereco && idEndereco && idRaca && idGenero && idTime && idEspecialidade){
+    if(nomeProfissional && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idTime && idEspecialidade){
         await profissionalServices.alterarProfissional(idProfissional, nomeProfissional, nomeSocial, dataNascimento, nroEndereco, complementoEndereco, cep, idEndereco, idRaca, idGenero, idTime, idEspecialidade);
         json.result = {
             idProfissional,
-            // add resto dos atributos
+            nomeCompleto,
+            nomeSocial,
+            cpf,
+            dataNascimento,
+            raca,
+            genero,
+            nroEndereco,
+            complementoEndereco,
+            time,
+            //esperar integrar com feature/time
+            especialidade,
+            siglaEspecialidade,
         };
     }else{
         json.error = 'Campos obrigatórios não enviados!';
     }
-
     res.json(json);
 }
 
