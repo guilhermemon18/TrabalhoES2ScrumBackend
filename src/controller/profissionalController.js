@@ -94,16 +94,6 @@ const inserirProfissional = async(req, res) => {
             idEspecialidade,
         };
     }else{
-        console.log(nomeCompleto);
-        console.log(cpf);
-        console.log(dataNascimento);
-        console.log(raca);
-        console.log(genero);
-        console.log(nroEndereco);
-        console.log(idEndereco);
-        console.log(idTime);
-        console.log(idEspecialidade);
-        console.log();
         json.error = 'Campos obrigatórios não enviados!';
     }
     res.json(json);
@@ -113,7 +103,7 @@ const alterarProfissional = async(req, res) => {
     let json = {error:'', result:{}};
 
     let idProfissional = req.params.id;
-    let nomeProfissional = req.body.nomeProfissional;
+    let nomeCompleto = req.body.nomeCompleto;
     let nomeSocial = req.body.nomeSocial;
     let cpf = req.body.cpf;
     let dataNascimento = req.body.dataNascimento;
@@ -121,12 +111,12 @@ const alterarProfissional = async(req, res) => {
     let genero = req.body.genero;
     let nroEndereco = req.body.nroEndereco;
     let complementoEndereco = req.body.complementoEndereco;
-    let idEndereco = 1;
-    let idTime = 1;
-    let idEspecialidade = req.body.especialidade;
+    let idEndereco = req.body.idEndereco;
+    let idTime = req.body.idTime;
+    let idEspecialidade = req.body.idEspecialidade;
 
-    if(nomeProfissional && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idTime && idEspecialidade){
-        await profissionalServices.alterarProfissional(idProfissional, nomeProfissional, nomeSocial, dataNascimento, nroEndereco, complementoEndereco, cep, idEndereco, idRaca, idGenero, idTime, idEspecialidade);
+    if(nomeCompleto && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idTime && idEspecialidade){
+        await profissionalServices.alterarProfissional(idProfissional, nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, idEndereco, idTime, idEspecialidade);
         json.result = {
             idProfissional,
             nomeCompleto,
@@ -137,12 +127,21 @@ const alterarProfissional = async(req, res) => {
             genero,
             nroEndereco,
             complementoEndereco,
-            time,
+            idTime,
             //esperar integrar com feature/time
-            especialidade,
-            siglaEspecialidade,
+            idEspecialidade,
         };
     }else{
+        console.log(nomeCompleto);
+        console.log(cpf);
+        console.log(dataNascimento);
+        console.log(raca);
+        console.log(genero);
+        console.log(nroEndereco);
+        console.log(idEndereco);
+        console.log(idTime);
+        console.log(idEspecialidade);
+        console.log();
         json.error = 'Campos obrigatórios não enviados!';
     }
     res.json(json);
