@@ -55,9 +55,17 @@ const alterarTime = async(req, res) => {
     res.json(json);
 }
 
+const excluirTime = async(req, res) => {
+    let json = {error:'', result:{}};
+
+    await timeServices.excluirTime(req.params.id);
+    
+    res.json(json);
+}
 
 module.exports = {
     buscarTime,
     inserirTime,
-    alterarTime
+    alterarTime,
+    excluirTime
 };
