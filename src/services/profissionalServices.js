@@ -9,7 +9,7 @@ const listarProfissional = () => {
     });
 }
 
-const buscarProfissional= (idProfissional) => {
+const buscarProfissional = (idProfissional) => {
     return new Promise((aceito, rejeitado) => {
         database.query('SELECT * FROM profissional WHERE profissional.idProfissional = ?', [idProfissional], (error, results) =>{
             if (error) { rejeitado(error); return; }

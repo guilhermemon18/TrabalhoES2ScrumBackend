@@ -1,6 +1,15 @@
 const database = require('../database/dbConfig');
 
-const buscarGenero= (idGenero) => {
+const listarGenero = () => {
+    return new Promise((aceito, rejeitado) => {
+        database.query('SELECT * FROM genero', (error, results) =>{
+            if (error) { rejeitado(error); return; }
+            aceito(results);
+        });
+    });
+}
+
+const buscarGenero = (idGenero) => {
     return new Promise((aceito, rejeitado) => {
         database.query('SELECT * FROM genero WHERE genero.idGenero = ?', [idGenero], (error, results) =>{
             if (error) { rejeitado(error); return; }
@@ -14,5 +23,6 @@ const buscarGenero= (idGenero) => {
 }
 
 module.exports = {
+    listarGenero,
     buscarGenero,
 };

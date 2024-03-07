@@ -1,6 +1,15 @@
 const database = require('../database/dbConfig');
 
-const buscarEspecialidade= (idEspecialidade) => {
+const listarEspecialidade = () => {
+    return new Promise((aceito, rejeitado) => {
+        database.query('SELECT * FROM especialidade', (error, results) =>{
+            if (error) { rejeitado(error); return; }
+            aceito(results);
+        });
+    });
+}
+
+const buscarEspecialidade = (idEspecialidade) => {
     return new Promise((aceito, rejeitado) => {
         database.query('SELECT * FROM especialidade WHERE especialidade.idEspecialidade = ?', [idEspecialidade], (error, results) =>{
             if (error) { rejeitado(error); return; }
@@ -14,5 +23,6 @@ const buscarEspecialidade= (idEspecialidade) => {
 }
 
 module.exports = {
+    listarEspecialidade,
     buscarEspecialidade,
 };

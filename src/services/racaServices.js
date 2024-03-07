@@ -1,6 +1,15 @@
 const database = require('../database/dbConfig');
 
-const buscarRaca= (idRaca) => {
+const listarRaca = () => {
+    return new Promise((aceito, rejeitado) => {
+        database.query('SELECT * FROM raca', (error, results) =>{
+            if (error) { rejeitado(error); return; }
+            aceito(results);
+        });
+    });
+}
+
+const buscarRaca = (idRaca) => {
     return new Promise((aceito, rejeitado) => {
         database.query('SELECT * FROM raca WHERE raca.idRaca = ?', [idRaca], (error, results) =>{
             if (error) { rejeitado(error); return; }
@@ -14,5 +23,6 @@ const buscarRaca= (idRaca) => {
 }
 
 module.exports = {
+    listarRaca,
     buscarRaca,
 };

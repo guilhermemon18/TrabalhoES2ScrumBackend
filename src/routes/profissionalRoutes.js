@@ -3,10 +3,10 @@ const router = express.Router();
 
 const profissionalController = require('../controller/profissionalController');
 
-router.get('/listarProfissional', profissionalController.listarProfissional);
-router.get('/buscarProfissional/:id', profissionalController.buscarProfissional);
-router.post('/inserirProfissional', profissionalController.inserirProfissional)
-router.put('/alterarProfissional/:id', profissionalController.alterarProfissional)
-router.delete('/excluirProfissional/:id', profissionalController.excluirProfissional)
+router.get('/listar', profissionalController.listarProfissional);
+router.get('/buscar/:id', profissionalController.buscarProfissional);
+router.post('/inserir', profissionalController.inserirProfissional);
+router.put('/alterar/:id', profissionalController.alterarProfissional);
+router.delete('/excluir/:id', profissionalController.excluirProfissional);
 
 module.exports = router;
