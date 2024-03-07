@@ -3,7 +3,7 @@ const timeServices = require('../services/timeServices');
 const buscarTime = async (req, res) => {
     let json = { error: '', result: {} };
 
-    let idTime = req.params.idTime;
+    let idTime = req.params.id;
     let time = await timeServices.buscarTime(idTime);
     
     console.log(time);
@@ -35,7 +35,29 @@ const inserirTime = async(req, res) => {
     res.json(json);
 }
 
+
+const alterarTime = async(req, res) => {
+    let json = {error:'', result:{}};
+
+    let idTime = req.params.id;
+    let nomeTime = req.body.nomeTime;
+
+    if(nomeTime){
+        await timeServices.alterarTime(idTime, nomeTime);
+        json.result = {
+            idTime: idTime,
+            nometime: nomeTime,
+        };
+    }else{
+        console.log(nomeTime);
+        json.error = 'Campos obrigatórios não enviados!';
+    }
+    res.json(json);
+}
+
+
 module.exports = {
     buscarTime,
-    inserirTime
+    inserirTime,
+    alterarTime
 };

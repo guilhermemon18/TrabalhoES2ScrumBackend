@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
-const { buscarTime } = require('./services/timeServices');
+const { buscarTime, alterarTime } = require('./services/timeServices');
 
 
 const server = express();
@@ -19,5 +19,4 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => { 
     console.log(`Servidor rodando na porta:${port}`);
     console.log(buscarTime(2));
-    
 });

@@ -22,7 +22,17 @@ const inserirTime = (nomeTime) => {
     });
 }
 
+const alterarTime = (idTime, nomeTime) => {
+    return new Promise((aceito, rejeitado) => {
+        database.query('UPDATE time SET nomeTime = ?  WHERE idTime = ?', [nomeTime, idTime], (error, results) =>{
+            if (error) { rejeitado(error); return; }
+            aceito(results);
+        });
+    });
+}
+
 module.exports = {
     buscarTime,
-    inserirTime
+    inserirTime,
+    alterarTime
 };
