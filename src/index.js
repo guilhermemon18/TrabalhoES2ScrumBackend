@@ -6,12 +6,13 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 const { buscarTime } = require('./services/timeServices');
 
+
 const server = express();
-//server.use(atualizar);
 server.use(cors());
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(bodyParser.json());
 server.use('/teste',routes);
+
 
 const port = process.env.PORT || 3000;
 
