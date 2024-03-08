@@ -1,4 +1,3 @@
-//arquivo principal que roda o servidor
 require('dotenv').config({path:'variaveis.env'});
 const express = require('express');
 const cors = require('cors');
