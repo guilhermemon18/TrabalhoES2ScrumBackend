@@ -74,6 +74,7 @@ const inserirProfissional = async(req, res) => {
     let nroEndereco = req.body.nroEndereco;
     let complementoEndereco = req.body.complementoEndereco;
     let idEndereco = req.body.idEndereco;
+    // checar se endereço indicado já existe no banco, se não existir, cadastra primeiro e depois insere o profissional
     let idTime = req.body.idTime;
     let idEspecialidade = req.body.idEspecialidade;
 
@@ -132,16 +133,6 @@ const alterarProfissional = async(req, res) => {
             idEspecialidade,
         };
     }else{
-        console.log(nomeCompleto);
-        console.log(cpf);
-        console.log(dataNascimento);
-        console.log(raca);
-        console.log(genero);
-        console.log(nroEndereco);
-        console.log(idEndereco);
-        console.log(idTime);
-        console.log(idEspecialidade);
-        console.log();
         json.error = 'Campos obrigatórios não enviados!';
     }
     res.json(json);
