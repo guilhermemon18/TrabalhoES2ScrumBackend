@@ -117,10 +117,10 @@ const alterarProjeto = async(req, res) => {
     res.json(json);
 }
 
-const excluirTime = async(req, res) => {
+const excluirProjeto = async(req, res) => {
     let json = {error:'', result:{}};
 
-    await projetoServices.excluirTime(req.params.id);
+    await projetoServices.excluirProjeto(req.params.id);
     
     res.json(json);
 }
@@ -130,5 +130,5 @@ module.exports = {
     buscarProjeto,
     inserirProjeto,
     alterarProjeto,
-    excluirTime
+    excluirProjeto
 };

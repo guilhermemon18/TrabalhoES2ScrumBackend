@@ -44,9 +44,9 @@ const alterarProjeto = (idProjeto, nomeProjeto, objetivo, dataInicio, dataTermin
     });
 }
 
-const excluirTime = (idTime) => {
+const excluirProjeto = (idProjeto) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('UPDATE time SET isAtivo = 0 WHERE idTime = ?', [idTime], (error, results) =>{
+        database.query('UPDATE projeto SET isAtivo = 0 WHERE idProjeto = ?', [idProjeto], (error, results) =>{
             if (error) { rejeitado(error); return; }
             aceito(results);
         });
@@ -58,5 +58,5 @@ module.exports = {
     buscarProjeto,
     inserirProjeto,
     alterarProjeto,
-    excluirTime
+    excluirProjeto
 };
