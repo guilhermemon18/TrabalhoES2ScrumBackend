@@ -1,5 +1,6 @@
 const profissionalServices = require('../services/profissionalServices');
 const especialidadeServices = require('../services/especialidadeServices');
+const timeServices = require('../services/timeServices');
 
 const listarProfissional = async (req, res) => {
     let json = {error:'', result:[]};
@@ -7,8 +8,7 @@ const listarProfissional = async (req, res) => {
     let profissionais = await profissionalServices.listarProfissional();
 
     for(let i in profissionais){
-        //let time = await timeServices.buscarTime(profissionais[i].Time_idTime);
-        // esperar integrar com feature/time
+        let time = await timeServices.buscarTime(profissionais[i].Time_idTime);
         let especialidade = await especialidadeServices.buscarEspecialidade(profissionais[i].Especialidade_idEspecialidade);
         json.result.push({
             idProfissional: profissionais[i].idProfissional,
@@ -22,8 +22,7 @@ const listarProfissional = async (req, res) => {
             nroEndereco: profissionais[i].nroEndereco,
             complementoEndereco: profissionais[i].complementoEndereco,
             cep: profissionais[i].cep,
-            //time: time.nomeTime,
-            // esperar integrar com feature/time
+            time: time.nomeTime,
             especialidade: especialidade.tipoEspecialidade,
             siglaEspecialidade: especialidade.siglaEspecialidade,
         });
@@ -36,8 +35,7 @@ const buscarProfissional = async (req, res) => {
 
     let idProfissional = req.params.id;
     let profissional = await profissionalServices.buscarProfissional(idProfissional);
-    //let time = await timeSerevices.buscarRime(profissional.Time_idTime);
-    // esperar integrar com feature/time
+    let time = await timeServices.buscarTime(profissional.Time_idTime);
     let especialidade = await especialidadeServices.buscarEspecialidade(profissional.Especialidade_idEspecialidade);
 
     console.log(profissional);
@@ -53,8 +51,7 @@ const buscarProfissional = async (req, res) => {
             genero: profissional.genero,
             nroEndereco: profissional.nroEndereco,
             complementoEndereco: profissional.complementoEndereco,
-            //time: time.nomeTime,
-            // esperar integrar com feature/time
+            time: time.nomeTime,
             especialidade: especialidade.tipoEspecialidade,
             siglaEspecialidade: especialidade.siglaEspecialidade,
         };
@@ -74,11 +71,9 @@ const inserirProfissional = async(req, res) => {
     let nroEndereco = req.body.nroEndereco;
     let complementoEndereco = req.body.complementoEndereco;
     let idEndereco = req.body.idEndereco;
-    // checar se endereço indicado já existe no banco, se não existir, cadastra primeiro e depois insere o profissional
-    let idTime = req.body.idTime;
     let idEspecialidade = req.body.idEspecialidade;
 
-    if(nomeCompleto && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idTime && idEspecialidade){
+    if(nomeCompleto && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idEspecialidade){
         let idProfissional = await profissionalServices.inserirProfissional(nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, idEndereco, idTime, idEspecialidade);
         json.result = {
             idProfissional: idProfissional,
@@ -91,7 +86,6 @@ const inserirProfissional = async(req, res) => {
             nroEndereco,
             complementoEndereco,
             idTime,
-            //esperar integrar com feature/time
             idEspecialidade,
         };
     }else{
@@ -129,7 +123,6 @@ const alterarProfissional = async(req, res) => {
             nroEndereco,
             complementoEndereco,
             idTime,
-            //esperar integrar com feature/time
             idEspecialidade,
         };
     }else{
