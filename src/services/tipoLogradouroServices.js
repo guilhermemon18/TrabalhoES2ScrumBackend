@@ -1,8 +1,8 @@
 const database = require('../database/dbConfig');
 
-const buscarEndereco = (idEndereco) => {
+const buscarTipoLogradouro = (idTipoLogradouro) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('SELECT * FROM endereco WHERE endereco.idEndereco = ?', [idEndereco], (error, results) =>{
+        database.query('SELECT * FROM tipologradouro WHERE tipologradouro.idTipoLogradouro = ?', [idTipoLogradouro], (error, results) =>{
             if (error) { rejeitado(error); return; }
             if (results.length > 0){
                 aceito(results[0]);
@@ -13,9 +13,9 @@ const buscarEndereco = (idEndereco) => {
     });
 }
 
-const inserirEndereco = (cep) => {
+const inserirTipoLogradouro = (tipoLogradouro) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('INSERT INTO profissional (cep) VALUES (?)', [cep], (error, results) =>{
+        database.query('INSERT INTO tipoLogradouro (tipoLogradouro) VALUES (?)', [tipoLogradouro], (error, results) =>{
             if (error) { rejeitado(error); return; }
             aceito(results.insertCodigo);
         });
@@ -23,6 +23,6 @@ const inserirEndereco = (cep) => {
 }
 
 module.exports = {
-    buscarEndereco,
-    inserirEndereco,
+    buscarTipoLogradouro,
+    inserirTipoLogradouro,
 };

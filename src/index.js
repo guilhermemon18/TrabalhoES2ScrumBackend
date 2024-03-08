@@ -9,9 +9,7 @@ server.use(cors());
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(bodyParser.json());
 server.use('/empresa-tec',routes);
-server.use('/empresa-tec',routes);
 
-const port = process.env.PORT;
 const port = process.env.PORT;
 
 server.listen(port, () => { 
