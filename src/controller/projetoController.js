@@ -1,6 +1,6 @@
 const projetoServices = require('../services/projetoServices');
 const clienteServices = require('../services/clienteServices');
-//const timeServices = require('../services/timeServices');
+const timeServices = require('../services/timeServices');
 
 const listarProjetos = async (req, res) => {
     let json = {error:'', result:[]};
@@ -9,7 +9,7 @@ const listarProjetos = async (req, res) => {
 
     for(let i in projetos){
         let cliente = await clienteServices.buscarCliente(projetos[i].Cliente_idCliente);
-        //let time = await timeServices.buscarTime(projetos[i].Time_idTime);
+        let time = await timeServices.buscarTime(projetos[i].Time_idTime);
         json.result.push({
             idProjeto: projetos[i].idProjeto,
             nomeProjeto: projetos[i].nomeProjeto,
@@ -18,7 +18,7 @@ const listarProjetos = async (req, res) => {
             dataTermino: projetos[i].dataTermino,
             valor: projetos[i].valor,
             cliente: cliente.nomeCompleto,
-            //time: time.nomeTime
+            time: time.nomeTime
         });
     }  
     res.json(json);
@@ -30,7 +30,7 @@ const buscarProjeto = async (req, res) => {
     let idProjeto = req.params.id;
     let projeto = await projetoServices.buscarProjeto(idProjeto);
     let cliente = await clienteServices.buscarCliente(projeto.Cliente_idCliente);
-    //let time = await timeServices.buscarTime(projeto.Time_idTime);
+    let time = await timeServices.buscarTime(projeto.Time_idTime);
     console.log(projeto);
 
     if (projeto) {
@@ -41,7 +41,8 @@ const buscarProjeto = async (req, res) => {
             dataInicio: projeto.dataInicio,
             dataTermino: projeto.dataTermino,
             valor: projeto.valor,
-            cliente: cliente.nomeCompleto
+            cliente: cliente.nomeCompleto,
+            time: time.nomeTime
         };
     }
     res.json(json);
