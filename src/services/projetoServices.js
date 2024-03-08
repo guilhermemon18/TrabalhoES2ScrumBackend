@@ -34,9 +34,10 @@ const inserirProjeto = (nomeProjeto, objetivo, dataInicio, dataTermino, valor, i
     });
 }
 
-const alterarTime = (idTime, nomeTime) => {
+const alterarProjeto = (idProjeto, nomeProjeto, objetivo, dataInicio, dataTermino, valor, idCliente, idTime) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('UPDATE time SET nomeTime = ?  WHERE idTime = ?', [nomeTime, idTime], (error, results) =>{
+        database.query('UPDATE projeto SET nomeProjeto = ?, objetivo = ?, dataInicio = ?, dataTermino = ?, valor = ?, Cliente_idCliente = ?, Time_idTime = ?  WHERE idProjeto = ?',
+         [nomeProjeto, objetivo, dataInicio, dataTermino, valor, idCliente, idTime, idProjeto], (error, results) =>{
             if (error) { rejeitado(error); return; }
             aceito(results);
         });
@@ -56,6 +57,6 @@ module.exports = {
     listarProjetos,
     buscarProjeto,
     inserirProjeto,
-    alterarTime,
+    alterarProjeto,
     excluirTime
 };
