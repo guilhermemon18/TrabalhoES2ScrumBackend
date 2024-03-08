@@ -1,6 +1,5 @@
 const database = require('../database/dbConfig');
 
-
 const buscarCliente= (idCliente) => {
     return new Promise((aceito, rejeitado) => {
         database.query('SELECT * FROM cliente WHERE cliente.idCliente = ?', [idCliente], (error, results) =>{
@@ -13,8 +12,6 @@ const buscarCliente= (idCliente) => {
         });
     });
 }
-
-
 
 module.exports = {
     buscarCliente,
