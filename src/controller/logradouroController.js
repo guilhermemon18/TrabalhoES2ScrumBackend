@@ -23,8 +23,9 @@ const inserirLogradouro = async(req, res) => {
     let logradouro = req.body.logradouro;
 
     if(logradouro){
-        if(!buscarLogradouro()) {
-            let idLogradouro = await logradouroServices.inserirLogradouro();
+        let existe = logradouroServices.buscarIdLogradouro(logradouro);
+        if(!existe) {
+            let idLogradouro = await logradouroServices.inserirLogradouro(logradouro);
             json.result = {
                 idLogradouro: idLogradouro,
                 logradouro,

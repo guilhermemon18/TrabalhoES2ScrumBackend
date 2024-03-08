@@ -10,11 +10,17 @@ const unidadeFederativaController = require('../controller/unidadeFederativaCont
 
 router.get('/buscarEnderecoCompleto/:idEndereco', enderecoController.buscarEnderecoCompleto);
 
+router.post('/inserirEndereco', enderecoController.inserirEndereco);
+router.post('/inserirBairro', bairroController.inserirBairro);
+router.post('/inserirTipoLogradouro', tipoLogradouroController.inserirTipoLogradouro);
+router.post('/inserirLogradouro', logradouroController.inserirLogradouro);
+router.post('/inserirCidade', cidadeController.inserirCidade);
+
 router.get('/buscarIdEndereco/:cep', enderecoController.buscarIdEndereco);
-router.get('/buscarIdBairro/:', bairroController.buscarIdBairro);
-router.get('/buscarIdTipoLogradouro/:', tipoLogradouroController.buscarIdTipoLogradouro);
-router.get('/buscarIdLogradouro/:', logradouroController.buscarIdLogradouro);
-router.get('/buscarIdCidade/:', cidadeController.buscarIdCidade);
-router.get('/buscarIdUnidadeFederativa/:', unidadeFederativaController.buscarIdUnidadeFederativa);
+router.get('/buscarIdBairro/:nomeBairro', bairroController.buscarIdBairro);
+router.get('/buscarIdTipoLogradouro/:nomeTipoLogradouro', tipoLogradouroController.buscarIdTipoLogradouro);
+router.get('/buscarIdLogradouro/:nomeLogradouro', logradouroController.buscarIdLogradouro);
+router.get('/buscarIdCidade/:nomeCidade', cidadeController.buscarIdCidade);
+router.get('/buscarIdUnidadeFederativa/:nomeUnidadeFederativa', unidadeFederativaController.buscarIdUnidadeFederativa);
 
 module.exports = router;

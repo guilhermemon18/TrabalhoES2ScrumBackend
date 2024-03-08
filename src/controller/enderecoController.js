@@ -52,7 +52,8 @@ const inserirEndereco = async(req, res) => {
     let cep = req.body.cep;
 
     if(cep){
-        if(!buscarCep(cep)) {
+        let existe = await enderecoServices.buscarCep(cep);
+        if(!existe) {
             let idCep = await cepServices.inserirCep();
             json.result = {
                 idCep: idCep,
@@ -69,7 +70,7 @@ const buscarIdEndereco = async (req, res) => {
     let json = { error: '', result: {} };
 
     let cep = req.params.cep;
-    let endereco = await enderecoServices.buscarIdEndereco(idEndereco);
+    let endereco = await enderecoServices.buscarIdEndereco(cep);
     
     console.log(endereco);
 

@@ -20,11 +20,12 @@ const buscarTipoLogradouro = async (req, res) => {
 const inserirTipoLogradouro = async(req, res) => {
     let json = {error:'', result:{}};
 
-    let tipoLogradouro = req.body.tipoLogradouro;
+    let tipoLogradouro = req.body.nomeTipoLogradouro;
 
     if(tipoLogradouro){
-        if(!buscarTipoLogradouro()) {
-            let idTipoLogradouro = await tipoLogradouroServices.inserirTipoLogradouro();
+        let existe = await tipoLogradouroServices.buscarIdTipoLogradouro(tipoLogradouro);
+        if(!existe) {
+            let idTipoLogradouro = await tipoLogradouroServices.inserirTipoLogradouro(tipoLogradouro);
             json.result = {
                 idTipoLogradouro: idTipoLogradouro,
                 tipoLogradouro,

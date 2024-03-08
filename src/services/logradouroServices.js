@@ -13,9 +13,9 @@ const buscarLogradouro = (idLogradouro) => {
     });
 }
 
-const inserirLogradouro = (logradouro) => {
+const inserirLogradouro = (logradouro, idTipoLogradouro) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('INSERT INTO logradouro (logradouro) VALUES (?)', [logradouro], (error, results) =>{
+        database.query('INSERT INTO logradouro (logradouro, TipoLogradouro_idTipoLogradouro) VALUES (?, ?)', [logradouro, idTipoLogradouro], (error, results) =>{
             if (error) { rejeitado(error); return; }
             aceito(results.insertCodigo);
         });

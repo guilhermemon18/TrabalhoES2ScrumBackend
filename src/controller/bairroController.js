@@ -23,8 +23,9 @@ const inserirBairro = async(req, res) => {
     let bairro = req.body.bairro;
 
     if(bairro){
-        if(!buscarBairro()) {
-            let idBairro = await bairroServices.inserirBairro();
+        let existe = await bairroServices.buscarIdBairro(bairro);
+        if(!existe) {
+            let idBairro = await bairroServices.inserirBairro(bairro);
             json.result = {
                 idBairro: idBairro,
                 bairro,
@@ -39,7 +40,7 @@ const inserirBairro = async(req, res) => {
 const buscarIdBairro = async (req, res) => {
     let json = { error: '', result: {} };
 
-    let nomeBairro = req.params.bairro;
+    let nomeBairro = req.params.nomeBairro;
     let bairro = await bairroServices.buscarIdBairro(nomeBairro);
     
     console.log();

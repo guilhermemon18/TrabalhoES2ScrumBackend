@@ -38,4 +38,5 @@ const buscarIdUnidadeFederativa = async (req, res) => {
 
 module.exports = {
     buscarUnidadeFederativa,
+    buscarIdUnidadeFederativa,
 };

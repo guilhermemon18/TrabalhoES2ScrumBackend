@@ -23,8 +23,9 @@ const inserirCidade = async(req, res) => {
     let cidade = req.body.cidade;
 
     if(cidade){
-        if(!buscarCidade()) {
-            let idCidade = await cidadeServices.inserirCidade();
+        let existe = await cidadeServices.buscarIdCidade(cidade);
+        if(!existe) {
+            let idCidade = await cidadeServices.inserirCidade(cidade);
             json.result = {
                 idCidade: idCidade,
                 cidade,
