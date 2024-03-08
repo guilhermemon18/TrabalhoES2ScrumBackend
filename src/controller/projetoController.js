@@ -41,17 +41,36 @@ const buscarProjeto = async (req, res) => {
     res.json(json);
 }
 
-const inserirTime = async(req, res) => {
+const inserirProjeto = async(req, res) => {
     let json = {error:'', result:{}};
 
-    let nomeTime = req.body.nomeTime;
-    console.log("Nome do time: " + nomeTime);
+    let nomeProjeto = req.body.nomeProjeto;
+    let objetivo = req.body.objetivo;
+    let dataInicio = req.body.dataInicio;
+    let dataTermino = req.body.dataTermino;
+    let valor = req.body.valor;
+    let idCliente = req.body.idCliente;
+    let idTime = req.body.idTime;
 
-    if(nomeTime){
-        let idTime = await projetoServices.inserirTime(nomeTime);
+    console.log(nomeProjeto);
+    console.log(objetivo);
+    console.log(dataInicio);
+    console.log(dataTermino);
+    console.log(valor);
+    console.log(idCliente);
+    console.log(idTime);
+    
+    if(nomeProjeto && objetivo && dataInicio && dataTermino && valor && idCliente && idTime){
+        let idProjeto = await projetoServices.inserirProjeto(nomeProjeto,objetivo,dataInicio,dataTermino,valor,idCliente,idTime);
         json.result = {
-            idTime: idTime,
-            nomeTime: nomeTime,
+            idProjeto: idProjeto,
+            nomeProjeto,
+            objetivo,
+            dataInicio,
+            dataTermino,
+            valor,
+            idCliente,
+            idTime
         };
     }else{
         json.error = 'Campos obrigatórios não enviados!';
@@ -90,7 +109,7 @@ const excluirTime = async(req, res) => {
 module.exports = {
     listarProjetos,
     buscarProjeto,
-    inserirTime,
+    inserirProjeto,
     alterarTime,
     excluirTime
 };
