@@ -5,7 +5,7 @@ const listarUnidadeFederativa = async (req, res) => {
 
     let unidadesFederativas = await unidadeFederativaServices.listarUnidadeFederativa();
 
-    for(let i in times){
+    for(let i in unidadesFederativas){
         json.result.push({
             idUnidadeFederativa: unidadesFederativas[i].idUnidadeFederativa,
             unidadeFederativa: unidadesFederativas[i].unidadeFederativa,

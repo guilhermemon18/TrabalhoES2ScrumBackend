@@ -124,6 +124,18 @@ const alterarProfissional = async(req, res) => {
     let idEndereco = req.body.idEndereco;
     let idTime = req.body.idTime;
     let idEspecialidade = req.body.idEspecialidade;
+    
+    console.log(nomeCompleto);
+    console.log(nomeSocial);
+    console.log(cpf);
+    console.log(dataNascimento);
+    console.log(raca);
+    console.log(genero);
+    console.log(nroEndereco);
+    console.log(complementoEndereco);
+    console.log(idEndereco);
+    console.log(idEspecialidade);
+    console.log(idTime);
 
     if(nomeCompleto && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idTime && idEspecialidade){
         await profissionalServices.alterarProfissional(idProfissional, nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, idEndereco, idTime, idEspecialidade);
