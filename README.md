@@ -11,7 +11,6 @@ Implementação do backend do 1º trabalho da disciplina de Engenharia de Softwa
 5. [Estrutura do Projeto](#estrutura-do-projeto)
    1. [Diretórios](#estrutura-de-diretórios)
    2. [Descrição](#descrição-dos-diretórios)
-3. [Instalação](#instalação)
 
 
 ## Descrição
@@ -19,7 +18,7 @@ Implementação do backend do 1º trabalho da disciplina de Engenharia de Softwa
 O projeto consiste numa aplicação de Cadastros de Projetos utilizando o framework SCRUM. Essa é a implementação do backend das rotas e do acesso ao banco de dados sobre as funcionalidades de consultar, listar, cadastrar, alterar e remover profissionais, times e projetos.
 Para implementar os recursos foi utilizado o framework Node.js, o banco de dados para armazenar as informaçoes escolhido foi o Mysql.
 
-## Tecnologias
+## Tecnologias 
 
 - [Node.js](https://nodejs.org/en): Framework Node.js para desenvolvimento da API.
 - [Mysql](https://www.mysql.com/): Banco de dados para armazenamento das informaçoes.
