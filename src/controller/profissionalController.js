@@ -21,6 +21,7 @@ const listarProfissional = async (req, res) => {
             nroEndereco: profissionais[i].nroEndereco,
             complementoEndereco: profissionais[i].complementoEndereco,
             cep: profissionais[i].cep,
+            idTime: time.idTime,
             time: time.nomeTime,
             especialidade: especialidade.tipoEspecialidade,
             siglaEspecialidade: especialidade.siglaEspecialidade,
