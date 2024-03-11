@@ -26,7 +26,7 @@ const inserirTime = (nomeTime) => {
     return new Promise((aceito, rejeitado) => {
         database.query('INSERT INTO time (nomeTime, isAtivo) VALUES (?, 1)', [nomeTime], (error, results) =>{
             if (error) { rejeitado(error); return; }
-            aceito(results.insertCodigo);
+            aceito(results.insertId);
         });
     });
 }

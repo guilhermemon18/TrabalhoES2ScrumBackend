@@ -29,7 +29,7 @@ const inserirProjeto = (nomeProjeto, objetivo, dataInicio, dataTermino, valor, i
         ('INSERT INTO projeto (nomeProjeto, objetivo, dataInicio, dataTermino, valor, isAtivo, Cliente_idCliente, Time_idTime) VALUES (?,?,?,?,?,?,?,?)', 
         [nomeProjeto, objetivo, dataInicio, dataTermino, valor, 1, idCliente, idTime], (error, results) =>{
             if (error) { rejeitado(error); return; }
-            aceito(results.insertCodigo);
+            aceito(results.insertId);
         });
     });
 }

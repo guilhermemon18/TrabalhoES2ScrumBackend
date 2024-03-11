@@ -50,14 +50,22 @@ const inserirEndereco = async(req, res) => {
     let json = {error:'', result:{}};
 
     let cep = req.body.cep;
+    let idBairro = req.body.idBairro;
+    let idLogradouro = req.body.idLogradouro;
+    let idCidade = req.body.idCidade;
 
     if(cep){
-        let existe = await enderecoServices.buscarCep(cep);
+        let existe = await enderecoServices.buscarIdEndereco(cep);
         if(!existe) {
-            let idCep = await cepServices.inserirCep();
+            let idEndereco = await enderecoServices.inserirEndereco(cep, idBairro, idLogradouro, idCidade);
             json.result = {
-                idCep: idCep,
-                cep,
+                idEndereco: idEndereco,
+                cep: cep,
+            };
+        } else {
+            json.result = {
+                idEndereco: existe.idEndereco,
+                cep: cep,
             };
         }
     }else{

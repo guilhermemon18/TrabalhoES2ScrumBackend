@@ -59,6 +59,14 @@ const inserirProjeto = async(req, res) => {
     let idCliente = req.body.idCliente;
     let idTime = req.body.idTime;
     
+    console.log(nomeProjeto);
+    console.log(objetivo);
+    console.log(dataInicio);
+    console.log(dataTermino);
+    console.log(valor);
+    console.log(idCliente);
+    console.log(idTime);
+
     if(nomeProjeto && objetivo && dataInicio && dataTermino && valor && idCliente && idTime){
         let idProjeto = await projetoServices.inserirProjeto(nomeProjeto,objetivo,dataInicio,dataTermino,valor,idCliente,idTime);
         json.result = {
@@ -88,6 +96,14 @@ const alterarProjeto = async(req, res) => {
     let valor = req.body.valor;
     let idCliente = req.body.idCliente;
     let idTime = req.body.idTime;
+ 
+    console.log(nomeProjeto);
+    console.log(objetivo);
+    console.log(dataInicio);
+    console.log(dataTermino);
+    console.log(valor);
+    console.log(idCliente);
+    console.log(idTime);
 
     if(nomeProjeto && objetivo && dataInicio && dataTermino && valor && idCliente && idTime){
         await projetoServices.alterarProjeto(idProjeto, nomeProjeto,objetivo,dataInicio,dataTermino,valor,idCliente,idTime);

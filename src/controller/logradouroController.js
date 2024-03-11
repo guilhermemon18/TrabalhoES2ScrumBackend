@@ -1,4 +1,5 @@
 const logradouroServices = require('../services/logradouroServices');
+const { buscarIdTipoLogradouro } = require('./tipoLogradouroController');
 
 const buscarLogradouro = async (req, res) => {
     let json = { error: '', result: {} };
@@ -21,14 +22,20 @@ const inserirLogradouro = async(req, res) => {
     let json = {error:'', result:{}};
 
     let logradouro = req.body.logradouro;
+    let idTipoLogradouro = req.body.idTipoLogradouro;
 
     if(logradouro){
-        let existe = logradouroServices.buscarIdLogradouro(logradouro);
+        let existe = await logradouroServices.buscarIdLogradouro(logradouro);
         if(!existe) {
-            let idLogradouro = await logradouroServices.inserirLogradouro(logradouro);
+            let idLogradouro = await logradouroServices.inserirLogradouro(logradouro, idTipoLogradouro);
             json.result = {
                 idLogradouro: idLogradouro,
-                logradouro,
+                logradouro: logradouro,
+            };
+        } else {
+            json.result = {
+                idLogradouro: existe.idLogradouro,
+                logradouro: logradouro,
             };
         }
     }else{

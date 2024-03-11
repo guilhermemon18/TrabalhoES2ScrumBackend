@@ -17,7 +17,7 @@ const inserirCidade = (cidade, idUnidadeFederativa) => {
     return new Promise((aceito, rejeitado) => {
         database.query('INSERT INTO cidade (cidade, UnidadeFederativa_idUnidadeFederativa) VALUES (?, ?)', [cidade, idUnidadeFederativa], (error, results) =>{
             if (error) { rejeitado(error); return; }
-            aceito(results.insertCodigo);
+            aceito(results.insertId);
         });
     });
 }

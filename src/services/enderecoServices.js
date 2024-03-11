@@ -13,11 +13,11 @@ const buscarEndereco = (idEndereco) => {
     });
 }
 
-const inserirEndereco = (cep, idBairro, idCidade, idLogradouro) => {
+const inserirEndereco = (cep, idBairro, idLogradouro, idCidade) => {
     return new Promise((aceito, rejeitado) => {
-        database.query('INSERT INTO profissional (cep, Bairro_idBairro, Cidade_idCidade, Logradouro_idLogradouro) VALUES (?, ?, ?, ?)', [cep, idBairro, idCidade, idLogradouro], (error, results) =>{
+        database.query('INSERT INTO endereco (cep, Bairro_idBairro, Cidade_idCidade, Logradouro_idLogradouro) VALUES (?, ?, ?, ?)', [cep, idBairro, idCidade, idLogradouro], (error, results) =>{
             if (error) { rejeitado(error); return; }
-            aceito(results.insertCodigo);
+            aceito(results.insertId);
         });
     });
 }

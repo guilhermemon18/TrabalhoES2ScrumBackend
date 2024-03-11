@@ -12,7 +12,6 @@ const listarProfissional = async (req, res) => {
         let especialidade = await especialidadeServices.buscarEspecialidade(profissionais[i].Especialidade_idEspecialidade);
         json.result.push({
             idProfissional: profissionais[i].idProfissional,
-            idProfissional: profissionais[i].idProfissional,
             nomeCompleto: profissionais[i].nomeCompleto,
             nomeSocial: profissionais[i].nomeSocial,
             cpf: profissionais[i].cpf,
@@ -72,7 +71,20 @@ const inserirProfissional = async(req, res) => {
     let complementoEndereco = req.body.complementoEndereco;
     let idEndereco = req.body.idEndereco;
     let idEspecialidade = req.body.idEspecialidade;
-
+    let idTime = req.body.idTime;
+/*
+    console.log(nomeCompleto);
+    console.log(nomeSocial);
+    console.log(cpf);
+    console.log(dataNascimento);
+    console.log(raca);
+    console.log(genero);
+    console.log(nroEndereco);
+    console.log(complementoEndereco);
+    console.log(idEndereco);
+    console.log(idEspecialidade);
+    console.log(idTime);
+*/
     if(nomeCompleto && cpf && dataNascimento && raca && genero && nroEndereco && idEndereco && idEspecialidade){
         let idProfissional = await profissionalServices.inserirProfissional(nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, idEndereco, idTime, idEspecialidade);
         json.result = {

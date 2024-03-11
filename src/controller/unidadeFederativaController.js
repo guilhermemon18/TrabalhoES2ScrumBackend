@@ -1,5 +1,20 @@
 const unidadeFederativaServices = require('../services/unidadeFederativaServices');
 
+const listarUnidadeFederativa = async (req, res) => {
+    let json = {error:'', result:[]};
+
+    let unidadesFederativas = await unidadeFederativaServices.listarUnidadeFederativa();
+
+    for(let i in times){
+        json.result.push({
+            idUnidadeFederativa: unidadesFederativas[i].idUnidadeFederativa,
+            unidadeFederativa: unidadesFederativas[i].unidadeFederativa,
+            siglaUnidadeFederativa: unidadesFederativas[i].siglaUnidadeFederativa
+        });
+    }  
+    res.json(json);
+}
+
 const buscarUnidadeFederativa = async (req, res) => {
     let json = { error: '', result: {} };
 
@@ -37,6 +52,7 @@ const buscarIdUnidadeFederativa = async (req, res) => {
 }
 
 module.exports = {
+    listarUnidadeFederativa,
     buscarUnidadeFederativa,
     buscarIdUnidadeFederativa,
 };

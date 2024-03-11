@@ -26,7 +26,7 @@ const inserirProfissional = (nomeCompleto, nomeSocial, cpf, dataNascimento, raca
     return new Promise((aceito, rejeitado) => {
         database.query('INSERT INTO profissional (nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, isAtivo, Endereco_idEndereco, Time_idTime, Especialidade_idEspecialidade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nomeCompleto, nomeSocial, cpf, dataNascimento, raca, genero, nroEndereco, complementoEndereco, 1, idEndereco, idTime, idEspecialidade], (error, results) =>{
             if (error) { rejeitado(error); return; }
-            aceito(results.insertCodigo);
+            aceito(results.insertId);
         });
     });
 }

@@ -1,3 +1,5 @@
+const express = require('express');
+
 const profissionalRoutes = require('./profissionalRoutes');
 const especialidadeRoutes = require('./especialidadeRoutes');
 const enderecoRoutes = require('./enderecoRoutes');

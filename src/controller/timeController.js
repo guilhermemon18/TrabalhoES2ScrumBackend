@@ -1,6 +1,5 @@
 const timeServices = require('../services/timeServices');
 
-
 const listarTimes = async (req, res) => {
     let json = {error:'', result:[]};
 

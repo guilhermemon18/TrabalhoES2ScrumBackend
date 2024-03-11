@@ -28,7 +28,12 @@ const inserirTipoLogradouro = async(req, res) => {
             let idTipoLogradouro = await tipoLogradouroServices.inserirTipoLogradouro(tipoLogradouro);
             json.result = {
                 idTipoLogradouro: idTipoLogradouro,
-                tipoLogradouro,
+                tipoLogradouro: tipoLogradouro,
+            };
+        } else {
+            json.result = {
+                idTipoLogradouro: existe.idTipoLogradouro,
+                tipoLogradouro: tipoLogradouro,
             };
         }
     }else{

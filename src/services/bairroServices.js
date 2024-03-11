@@ -17,7 +17,7 @@ const inserirBairro = (bairro) => {
     return new Promise((aceito, rejeitado) => {
         database.query('INSERT INTO bairro (bairro) VALUES (?)', [bairro], (error, results) =>{
             if (error) { rejeitado(error); return; }
-            aceito(results.insertCodigo);
+            aceito(results.insertId);
         });
     });
 }

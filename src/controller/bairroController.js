@@ -28,7 +28,12 @@ const inserirBairro = async(req, res) => {
             let idBairro = await bairroServices.inserirBairro(bairro);
             json.result = {
                 idBairro: idBairro,
-                bairro,
+                bairro: bairro,
+            };
+        } else {
+            json.result = {
+                idBairro: existe.idBairro,
+                bairro: bairro,
             };
         }
     }else{
