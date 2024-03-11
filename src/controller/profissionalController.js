@@ -50,6 +50,7 @@ const buscarProfissional = async (req, res) => {
             genero: profissional.genero,
             nroEndereco: profissional.nroEndereco,
             complementoEndereco: profissional.complementoEndereco,
+            idEndereco: profissional.Endereco_idEndereco,
             time: time.nomeTime,
             especialidade: especialidade.tipoEspecialidade,
             siglaEspecialidade: especialidade.siglaEspecialidade,

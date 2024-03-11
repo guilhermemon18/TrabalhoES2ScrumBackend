@@ -21,7 +21,7 @@ const buscarEnderecoCompleto = async (req, res) => {
             cidade: cidade.cidade,
             tipoLogradouro: tipoLogradouro.tipoLogradouro,
             logradouro: logradouro.logradouro,
-            UF: unidadeFederativa.unidadeFederativa,
+            unidadeFederativa: unidadeFederativa.unidadeFederativa,
             siglaUF: unidadeFederativa.siglaUnidadeFederativa
         };
     }
