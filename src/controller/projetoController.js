@@ -41,7 +41,9 @@ const buscarProjeto = async (req, res) => {
             dataInicio: projeto.dataInicio,
             dataTermino: projeto.dataTermino,
             valor: projeto.valor,
+            idCliente: cliente.idCliente,
             cliente: cliente.nomeCompleto,
+            idTime: time.idTime || null,
             time: time.nomeTime
         };
     }
