@@ -30,7 +30,9 @@ Para implementar os recursos foi utilizado o framework Node.js, o banco de dados
 
 1. Clone o repositório: `git clone git@github.com:guilhermemon18/trabalho1-es2-backend.git`
 2. Instale as dependências:
-   ```console npm install```
+   ```console
+    npm install
+   ```
 
 ## Execução
 1. Entre na raiz do repositório do projeto.
