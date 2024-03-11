@@ -1,16 +1,22 @@
 const enderecoServices = require('../services/enderecoServices');
+const bairroServices = require('../services/bairroServices');
+const logradouroServices = require('../services/logradouroServices');
+const tipoLogradouroServices = require('../services/tipoLogradouroServices');
+const cidadeServices = require('../services/cidadeServices');
+const unidadeFederativaServices = require('../services/unidadeFederativaServices');
 
 const buscarEnderecoCompleto = async (req, res) => {
     let json = { error: '', result: {} };
 
     let idEndereco = req.params.idEndereco;
     let endereco = await enderecoServices.buscarEndereco(idEndereco);
-    let bairro = await enderecoServices.buscarBairro(endereco.Bairro_idBairro);
-    let logradouro = await enderecoServices.buscarLogradouro(endereco.Logradouro_idLogradouro);
-    let tipoLogradouro = await enderecoServices.buscarTipoLogradouro(logradouro.TipoLogradouro_idTipoLogradouro);
-    let cidade = await enderecoServices.buscarCidade(endereco.Cidade_idCidade);
-    let unidadeFederativa = await enderecoServices.buscarUnidadeFederativa(cidade.UnidadeFederativa_idUnidadeFederativa);
-
+    let bairro = await bairroServices.buscarBairro(endereco.Bairro_idBairro);
+    let logradouro = await logradouroServices.buscarLogradouro(endereco.Logradouro_idLogradouro);
+    let tipoLogradouro = await tipoLogradouroServices.buscarTipoLogradouro(logradouro.TipoLogradouro_idTipoLogradouro);
+    let cidade = await cidadeServices.buscarCidade(endereco.Cidade_idCidade);
+    let unidadeFederativa = await unidadeFederativaServices.buscarUnidadeFederativa(cidade.UnidadeFederativa_idUnidadeFederativa);
+    
+    console.log('oooooiiiiiiiiiii')
     console.log(endereco);
 
     if (endereco) {

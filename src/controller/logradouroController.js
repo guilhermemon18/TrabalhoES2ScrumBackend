@@ -1,5 +1,4 @@
 const logradouroServices = require('../services/logradouroServices');
-const { buscarIdTipoLogradouro } = require('./tipoLogradouroController');
 
 const buscarLogradouro = async (req, res) => {
     let json = { error: '', result: {} };
