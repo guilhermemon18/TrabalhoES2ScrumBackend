@@ -15,9 +15,6 @@ const buscarEnderecoCompleto = async (req, res) => {
     let tipoLogradouro = await tipoLogradouroServices.buscarTipoLogradouro(logradouro.TipoLogradouro_idTipoLogradouro);
     let cidade = await cidadeServices.buscarCidade(endereco.Cidade_idCidade);
     let unidadeFederativa = await unidadeFederativaServices.buscarUnidadeFederativa(cidade.UnidadeFederativa_idUnidadeFederativa);
-    
-    console.log('oooooiiiiiiiiiii')
-    console.log(endereco);
 
     if (endereco) {
         json.result = {
