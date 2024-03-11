@@ -28,15 +28,21 @@ Para implementar os recursos foi utilizado o framework Node.js, o banco de dados
 
 - Versão do Node: 20.11.1
 
-1. Clone o repositório: `git clone git@github.com:guilhermemon18/trabalho1-es2-backend.git`
-2. Instale as dependências:
+1. Clone o repositório:
+   ```console
+      git clone git@github.com:guilhermemon18/trabalho1-es2-backend.git
+   ```
+3. Instale as dependências:
    ```console
     npm install
    ```
 
 ## Execução
 1. Entre na raiz do repositório do projeto.
-2. Execute o seguinte comando: `npm start`
+2. Execute o seguinte comando:
+   ```console
+      npm start
+   ```
 
 - Ao executar esse comando, o servidor de desenvolvimento do backend irá tentar inicializar e rodar na porta 3000 por padrão, se ocorrer algum erro será utilizada outra porta disponível.
 
